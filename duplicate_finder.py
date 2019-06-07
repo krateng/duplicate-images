@@ -47,7 +47,7 @@ import pymongo
 from termcolor import cprint
 
 # 0 means original, 15 means accept everything
-TOLERANCE = 12
+TOLERANCE = 11
 
 
 @contextmanager

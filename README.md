@@ -3,8 +3,8 @@
 This is merely a fork with some adjustments to fit my own needs.
 
 * Added tolerance value to find significantly more duplicates
-* Added warning on web interface if files are in different folders
-* Added indicator on web interface which image ha the biggest dimensions and file size
+* Added indicator on web interface if files are in different folders
+* Added indicator on web interface which image has the biggest dimensions and file size
 
 # ORIGINAL README
 
