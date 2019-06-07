@@ -17,7 +17,7 @@
 	    <b>DIFFERENT FOLDER</b>
 	    {% endif %}
 
-	    {% if img['biggest_image'] %}
+	    {% if img['biggest_file'] %}
             <div class="file-size"><b>{{ img['file_size'] | filesizeformat }}</b></div>
 	    {% else %}
             <div class="file-size">{{ img['file_size'] | filesizeformat }}</div>
