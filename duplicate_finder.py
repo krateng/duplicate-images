@@ -46,6 +46,9 @@ from PIL import Image, ExifTags
 import pymongo
 from termcolor import cprint
 
+# 0 means original, 15 means accept everything
+TOLERANCE = 13
+
 
 @contextmanager
 def connect_to_db(db_conn_string='./db'):
@@ -130,7 +133,8 @@ def hash_file(file):
                 turned_img = img.rotate(angle, expand=True)
             else:
                 turned_img = img
-            hashes.append(str(imagehash.phash(turned_img)))
+            hashes.append(str(imagehash.phash(turned_img))[:(-1*TOLERANCE)])
+            # we can drop quite a bit from the end and still get very similar images
 
         hashes = ''.join(sorted(hashes))
 
