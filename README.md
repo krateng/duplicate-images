@@ -1,5 +1,13 @@
 # Duplicate Image Finder
 
+This is merely a fork with some adjustments to fit my own needs.
+
+* Added tolerance value to find significantly more duplicates
+* Added warning on web interface if files are in different folders
+* Added indicator on web interface which image ha the biggest dimensions and file size
+
+# ORIGINAL README
+
 ![](https://api.travis-ci.org/philipbl/duplicate-images.svg)
 
 This Python script finds duplicate images using a [perspective hash (pHash)](http://www.phash.org) to compare images. pHash ignores the image size and file size and instead creates a hash based on the pixels of the image. This allows you to find duplicate pictures that have been rotated, have changed metadata, and slightly edited.

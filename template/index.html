@@ -17,8 +17,17 @@
 	    <b>DIFFERENT FOLDER</b>
 	    {% endif %}
 
+	    {% if img['biggest_image'] %}
+            <div class="file-size"><b>{{ img['file_size'] | filesizeformat }}</b></div>
+	    {% else %}
             <div class="file-size">{{ img['file_size'] | filesizeformat }}</div>
+	    {% endif %}
+
+	    {% if img['biggest_image'] %}
+	    <div class="resolution"><b>{{ img['image_size'] }}</b></div>
+	    {% else %}
             <div class="resolution">{{ img['image_size'] }}</div>
+	    {% endif %}
             <div class="capture-time">{{ img['capture_time'] }}</div>
             <button class="btn btn-danger delete-btn" role="button" data-name="{{ img['file_name'] }}" style="margin-top: 15px">
                 Delete

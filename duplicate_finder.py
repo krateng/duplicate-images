@@ -248,12 +248,29 @@ def find(db, match_time=False):
 
     dups = list(dups)
 
-	# find out common path
+    def mul(a,b):
+        return a*b
+
+
     for d in dups:
+
+        # find out common path
         paths = [item["file_name"].split("/") for item in d["items"]]
         common = os.path.commonprefix(paths)
         d["common"] = "/".join(common)
         d["samefolder"] = all([(len(path) - len(common) == 1) for path in paths])
+
+        sizes = [item["image_size"] for item in d["items"]]
+        pixelcounts = {sz:mul(*[int(x.strip()) for x in sz.split("x")]) for sz in sizes}
+        maxpixelcount = max(pixelcounts[s] for s in pixelcounts)
+        for img in d["items"]:
+            img["biggest_image"] = (pixelcounts[img["image_size"]] == maxpixelcount)
+
+        filesizes = [item["file_size"] for item in d["items"]]
+        maxfilesize = max(filesizes)
+        for img in d["items"]:
+            img["biggest_file"] = (img["file_size"] == maxfilesize)
+
 
     return dups
 
