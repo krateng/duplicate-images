@@ -246,7 +246,16 @@ def find(db, match_time=False):
     if match_time:
         dups = (d for d in dups if same_time(d))
 
-    return list(dups)
+    dups = list(dups)
+
+	# find out common path
+    for d in dups:
+        paths = [item["file_name"].split("/") for item in d["items"]]
+        common = os.path.commonprefix(paths)
+        d["common"] = "/".join(common)
+        d["samefolder"] = all([(len(path) - len(common) == 1) for path in paths])
+
+    return dups
 
 
 def delete_duplicates(duplicates, db):
