@@ -11,11 +11,10 @@
     <div class="thumbnail">
         <img class="img-responsive" src="{{ img['file_name'] }}" alt="{{ img['file_name'] }}">
         <div class="caption">
-            <h5 class="name">{{ img['file_name'] }}</h5>
-	    {% if samefolder %}
-	    {% else %}
-	    <b>DIFFERENT FOLDER</b>
-	    {% endif %}
+            <h5 class="name">
+		    {{ img['file_name_parts']['commonprefix'] }}<span style="color:red;font-weight:bold;">{{ img['file_name_parts']['unique'] }}</span>{{ img['file_name_parts']['filename'] }}
+
+	    </h5>
 
 	    {% if img['biggest_file'] %}
             <div class="file-size"><b>{{ img['file_size'] | filesizeformat }}</b></div>

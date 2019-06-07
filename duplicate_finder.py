@@ -47,7 +47,7 @@ import pymongo
 from termcolor import cprint
 
 # 0 means original, 15 means accept everything
-TOLERANCE = 13
+TOLERANCE = 12
 
 
 @contextmanager
@@ -259,6 +259,12 @@ def find(db, match_time=False):
         common = os.path.commonprefix(paths)
         d["common"] = "/".join(common)
         d["samefolder"] = all([(len(path) - len(common) == 1) for path in paths])
+        for img in d["items"]:
+            img["file_name_parts"] = {
+                "commonprefix":"/".join(common),
+                "unique":"/".join([""] + img["file_name"].split("/")[len(common):-1]),
+                "filename":"/" + img["file_name"].split("/")[-1]
+            }
 
         sizes = [item["image_size"] for item in d["items"]]
         pixelcounts = {sz:mul(*[int(x.strip()) for x in sz.split("x")]) for sz in sizes}
